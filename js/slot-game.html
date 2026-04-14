@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Japan Slot Machine App</title>
+  <style>
+    body {
+      font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f7f7f7;
+      background-image: url('../assets/img/CherryBlossom.png');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      color: #2d3436;
+    }
+    .page-wrap {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+    .header, .section, .footer {
+      background: #fff;
+      border-radius: 14px;
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 10px 24px rgba(0,0,0,0.08);
+    }
+    .header h1,
+    .section h2 {
+      text-align: center;
+    }
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 18px;
+      justify-content: center;
+    }
+    .nav-links a {
+      color: #0d6efd;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .slot-machine {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 18px;
+    }
+    .reel {
+      background: #111827;
+      border-radius: 16px;
+      color: #fff;
+      min-height: 130px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      font-weight: 700;
+      text-align: center;
+      padding: 16px;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.08);
+    }
+    .slot-controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 20px;
+      justify-content: center;
+    }
+    .slot-button {
+      background: #0d6efd;
+      color: #fff;
+      border: none;
+      border-radius: 999px;
+      padding: 14px 24px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+    .slot-button:hover {
+      transform: translateY(-2px);
+      background: #0b5ed7;
+    }
+    .slot-result {
+      margin-top: 18px;
+      padding: 18px;
+      border-radius: 12px;
+      background: #eef2ff;
+      color: #1e3a8a;
+      font-weight: 600;
+      text-align: center;
+    }
+    .slot-table {
+      display: grid;
+      gap: 8px;
+      margin-top: 16px;
+    }
+    .slot-table strong {
+      display: block;
+      margin-bottom: 6px;
+    }
+    .footer p a {
+      color: #0d6efd;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="page-wrap">
+    <div class="header" id="top">
+      <h1>Japan Slot Machine App</h1>
+      <p>Spin the slot machine to get a fun travel idea for Japan, all in one page.</p>
+      <div class="nav-links">
+        <a href="scratch-paper.html">Back to Scratch Page</a>
+        <a href="../index.html">Back to Professional Home Page</a>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Travel Combo Generator</h2>
+      <p>Spin to reveal a city, an activity, and a food item for a Japan travel idea.</p>
+
+      <div class="slot-machine">
+        <div class="reel" id="reel-city">Tokyo</div>
+        <div class="reel" id="reel-activity">Sushi</div>
+        <div class="reel" id="reel-food">Cherry Blossoms</div>
+      </div>
+
+      <div class="slot-controls">
+        <button class="slot-button" id="spin-button">Spin</button>
+        <button class="slot-button" id="reset-button">Reset</button>
+      </div>
+
+      <div class="slot-result" id="slot-result">
+        Press Spin to reveal a new travel combination.
+      </div>
+
+      <div class="slot-table">
+        <div><strong>City reel options:</strong> Tokyo, Kyoto, Osaka, Sapporo, Hiroshima, Nara, Fukuoka, Okinawa</div>
+        <div><strong>Activity reel options:</strong> Temple visit, Night market, Anime district, Onsen soak, Cherry blossom walk, Street food tour, Tea ceremony, Bullet train ride</div>
+        <div><strong>Food reel options:</strong> Sushi, Ramen, Takoyaki, Matcha dessert, Bento, Yakitori, Okonomiyaki, Tempura</div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <p><a href="scratch-paper.html">Back to the Scratch Page</a></p>
+      <p><a href="../index.html">Back to Professional Home Page</a></p>
+    </div>
+  </div>
+
+  <script>
+    const cities = [
+      'Tokyo',
+      'Kyoto',
+      'Osaka',
+      'Sapporo',
+      'Hiroshima',
+      'Nara',
+      'Fukuoka',
+      'Okinawa'
+    ];
+
+    const activities = [
+      'Temple visit',
+      'Night market',
+      'Anime district',
+      'Onsen soak',
+      'Cherry blossom walk',
+      'Street food tour',
+      'Tea ceremony',
+      'Bullet train ride'
+    ];
+
+    const foods = [
+      'Sushi',
+      'Ramen',
+      'Takoyaki',
+      'Matcha dessert',
+      'Bento',
+      'Yakitori',
+      'Okonomiyaki',
+      'Tempura'
+    ];
+
+    const reelCity = document.getElementById('reel-city');
+    const reelActivity = document.getElementById('reel-activity');
+    const reelFood = document.getElementById('reel-food');
+    const spinButton = document.getElementById('spin-button');
+    const resetButton = document.getElementById('reset-button');
+    const resultText = document.getElementById('slot-result');
+
+    const getRandomItem = array => array[Math.floor(Math.random() * array.length)];
+
+    const spinReel = (reel, values, duration) => {
+      return new Promise(resolve => {
+        const interval = setInterval(() => {
+          reel.textContent = getRandomItem(values);
+        }, 80);
+
+        setTimeout(() => {
+          clearInterval(interval);
+          const finalValue = getRandomItem(values);
+          reel.textContent = finalValue;
+          resolve(finalValue);
+        }, duration);
+      });
+    };
+
+    const showResult = (city, activity, food) => {
+      resultText.textContent = `Ready for Japan? Try ${activity.toLowerCase()} in ${city}, and enjoy ${food.toLowerCase()} while you explore.`;
+    };
+
+    spinButton.addEventListener('click', async () => {
+      spinButton.disabled = true;
+      resetButton.disabled = true;
+      resultText.textContent = 'Spinning...';
+
+      const city = await spinReel(reelCity, cities, 1000);
+      const activity = await spinReel(reelActivity, activities, 1300);
+      const food = await spinReel(reelFood, foods, 1600);
+
+      showResult(city, activity, food);
+      spinButton.disabled = false;
+      resetButton.disabled = false;
+    });
+
+    resetButton.addEventListener('click', () => {
+      reelCity.textContent = 'Tokyo';
+      reelActivity.textContent = 'Sushi';
+      reelFood.textContent = 'Cherry Blossoms';
+      resultText.textContent = 'Press Spin to reveal a new travel combination.';
+    });
+  </script>
+</body>
+</html>

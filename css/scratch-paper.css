@@ -1,0 +1,60 @@
+body {
+  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f7f7f7;
+  background-image: url('../assets/img/CherryBlossom.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: #5a5f61;
+}
+.page-wrap {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 24px;
+}
+.header, .section, .footer {
+  background: #fff;
+  border-radius: 14px;
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 10px 24px rgba(0,0,0,0.08);
+}
+.header h1,
+.section h2 {
+  text-align: center;
+}
+.video-box {
+  display: flex;
+  justify-content: center;
+}
+.video-box iframe {
+  width: 100%;
+  max-width: 860px;
+  aspect-ratio: 16 / 9;
+  height: auto;
+}
+.nav-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 18px;
+}
+.nav-links a {
+  color: #0d6efd;
+  text-decoration: none;
+  font-weight: 600;
+}
+.travel-image {
+  display: block;
+  width: 100%;
+  max-width: 560px;
+  height: auto;
+  border-radius: 12px;
+  margin: 16px auto;
+}
+.footer p a {
+  color: #0d6efd;
+  text-decoration: none;
+}
